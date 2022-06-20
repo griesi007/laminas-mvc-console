@@ -28,13 +28,12 @@
             "component": "Laminas\\Mvc\\Console"
         }
     },
-"repositories": [
-            {
-          "type": "vcs",
-          "url": "https://github.com/griesi007/laminas-console.git"
-        }
-
-],
+    "repositories": [
+		{
+            "type": "git",
+            "url": "https://github.com/griesi007/laminas-console.git"
+		}
+	],
     "require": {
         "php": "^7.3 || ~8.0.0",
         "container-interop/container-interop": "^1.1",
