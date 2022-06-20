@@ -29,17 +29,11 @@
         }
     },
 "repositories": [
-    {
-		{
-          "type": "package",
-            "package": {
-                "name": "laminas/laminas-mvc-console",
-                "source": {
-                    "url": "https://github.com/griesi007/laminas-console.git",
-                    "type": "git"
-                }
-            }
-		}
+            {
+          "type": "vcs",
+          "url": "https://github.com/griesi007/laminas-console.git"
+        }
+
 ],
     "require": {
         "php": "^7.3 || ~8.0.0",
