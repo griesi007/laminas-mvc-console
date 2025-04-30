@@ -8,9 +8,10 @@
 
 namespace Laminas\Mvc\Console\Router;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\Router\RouterConfigTrait;
-use Laminas\ServiceManager\FactoryInterface;
+
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class ConsoleRouterFactory implements FactoryInterface
@@ -25,7 +26,7 @@ class ConsoleRouterFactory implements FactoryInterface
      * @param  null|array $options
      * @return SimpleRouteStack
      */
-    public function __invoke(ContainerInterface $container, $name, array $options = null)
+    public function __invoke(ContainerInterface $container, $name, ?array $options = null)
     {
         $config = $container->has('config') ? $container->get('config') : [];
         $config = isset($config['console']['router']) ? $config['console']['router'] : [];

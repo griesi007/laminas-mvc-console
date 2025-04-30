@@ -9,7 +9,7 @@
 namespace Laminas\Mvc\Console\Service;
 
 use ArrayAccess;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 trait ConsoleViewManagerConfigTrait
 {

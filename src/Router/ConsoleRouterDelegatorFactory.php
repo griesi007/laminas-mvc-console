@@ -8,9 +8,9 @@
 
 namespace Laminas\Mvc\Console\Router;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\Console\Console;
-use Laminas\ServiceManager\DelegatorFactoryInterface;
+use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
 /**
@@ -38,7 +38,7 @@ class ConsoleRouterDelegatorFactory implements DelegatorFactoryInterface
      * @param null|array $options
      * @return \Laminas\Mvc\Router\RouteStackInterface
      */
-    public function __invoke(ContainerInterface $container, $name, callable $callback, array $options = null)
+    public function __invoke(ContainerInterface $container, $name, callable $callback, ?array $options = null)
     {
         // Console environment?
         if ($name === 'ConsoleRouter'                                      // force console router

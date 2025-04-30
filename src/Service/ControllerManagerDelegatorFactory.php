@@ -8,9 +8,9 @@
 
 namespace Laminas\Mvc\Console\Service;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\Mvc\Console\Controller\AbstractConsoleController;
-use Laminas\ServiceManager\DelegatorFactoryInterface;
+use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class ControllerManagerDelegatorFactory implements DelegatorFactoryInterface
@@ -24,7 +24,7 @@ class ControllerManagerDelegatorFactory implements DelegatorFactoryInterface
      * @param null|array $options
      * @return \Laminas\Mvc\Controller\ControllerManager
      */
-    public function __invoke(ContainerInterface $container, $name, callable $callback, array $options = null)
+    public function __invoke(ContainerInterface $container, $name, callable $callback, ?array $options = null)
     {
         $controllers = $callback();
         $controllers->addInitializer([$this, 'injectConsole']);

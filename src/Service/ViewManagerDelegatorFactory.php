@@ -8,9 +8,9 @@
 
 namespace Laminas\Mvc\Console\Service;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\Console\Console;
-use Laminas\ServiceManager\DelegatorFactoryInterface;
+use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class ViewManagerDelegatorFactory implements DelegatorFactoryInterface
@@ -24,7 +24,7 @@ class ViewManagerDelegatorFactory implements DelegatorFactoryInterface
      * @param null|array $options
      * @return \Laminas\Mvc\Console\View\ViewManager|Laminas\Mvc\View\Http\ViewManager
      */
-    public function __invoke(ContainerInterface $container, $name, callable $callback, array $options = null)
+    public function __invoke(ContainerInterface $container, $name, callable $callback, ?array $options = null)
     {
         if (! Console::isConsole() || ! $container->has('ConsoleViewManager')) {
             return $callback();

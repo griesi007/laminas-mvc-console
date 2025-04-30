@@ -8,10 +8,10 @@
 
 namespace Laminas\Mvc\Console\Service;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\Console\Adapter\AdapterInterface;
 use Laminas\Console\Console;
-use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use stdClass;
 

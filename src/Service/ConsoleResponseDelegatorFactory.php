@@ -8,10 +8,10 @@
 
 namespace Laminas\Mvc\Console\Service;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\Console\Console;
 use Laminas\Console\Response as ConsoleResponse;
-use Laminas\ServiceManager\DelegatorFactoryInterface;
+use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
 /**
@@ -29,7 +29,7 @@ class ConsoleResponseDelegatorFactory implements DelegatorFactoryInterface
      * @param null|array $options
      * @return ConsoleResponse|\Laminas\Http\Response
      */
-    public function __invoke(ContainerInterface $container, $name, callable $callback, array $options = null)
+    public function __invoke(ContainerInterface $container, $name, callable $callback, ?array $options = null)
     {
         if (! Console::isConsole()) {
             return $callback();

@@ -8,10 +8,10 @@
 
 namespace Laminas\Mvc\Console\Service;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\Mvc\Console\ResponseSender\ConsoleResponseSender;
 use Laminas\Mvc\ResponseSender\SendResponseEvent;
-use Laminas\ServiceManager\DelegatorFactoryInterface;
+use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
 /**
@@ -29,7 +29,7 @@ class ConsoleResponseSenderDelegatorFactory implements DelegatorFactoryInterface
      * @param null|array $options
      * @return \Laminas\Mvc\SendResponseListener
      */
-    public function __invoke(ContainerInterface $container, $name, callable $callback, array $options = null)
+    public function __invoke(ContainerInterface $container, $name, callable $callback, ?array $options = null)
     {
         $sendResponseListener = $callback();
         $events = $sendResponseListener->getEventManager();

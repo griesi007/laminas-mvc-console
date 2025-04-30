@@ -8,11 +8,11 @@
 
 namespace Laminas\Mvc\Console\Service;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\Console\Console;
 use Laminas\Mvc\Console\View\ViewManager as ConsoleViewManager;
 use Laminas\ServiceManager\Exception\ServiceNotCreatedException;
-use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class ConsoleViewManagerFactory implements FactoryInterface
@@ -25,7 +25,7 @@ class ConsoleViewManagerFactory implements FactoryInterface
      * @param  null|array $options
      * @return ConsoleViewManager
      */
-    public function __invoke(ContainerInterface $container, $name, array $options = null)
+    public function __invoke(ContainerInterface $container, $name, ?array $options = null)
     {
         if (! Console::isConsole()) {
             throw new ServiceNotCreatedException(

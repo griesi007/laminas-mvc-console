@@ -8,9 +8,9 @@
 
 namespace Laminas\Mvc\Console\Service;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\Mvc\Console\View\ExceptionStrategy;
-use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class ConsoleExceptionStrategyFactory implements FactoryInterface
@@ -23,7 +23,7 @@ class ConsoleExceptionStrategyFactory implements FactoryInterface
      * @param  null|array $options
      * @return ExceptionStrategy
      */
-    public function __invoke(ContainerInterface $container, $name, array $options = null)
+    public function __invoke(ContainerInterface $container, $name, ?array $options = null)
     {
         $strategy = new ExceptionStrategy();
         $config   = $this->getConfig($container);

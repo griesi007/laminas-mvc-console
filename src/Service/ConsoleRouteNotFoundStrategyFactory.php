@@ -8,9 +8,9 @@
 
 namespace Laminas\Mvc\Console\Service;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\Mvc\Console\View\RouteNotFoundStrategy;
-use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class ConsoleRouteNotFoundStrategyFactory implements FactoryInterface
@@ -23,7 +23,7 @@ class ConsoleRouteNotFoundStrategyFactory implements FactoryInterface
      * @param  null|array $options
      * @return RouteNotFoundStrategy
      */
-    public function __invoke(ContainerInterface $container, $name, array $options = null)
+    public function __invoke(ContainerInterface $container, $name, ?array $options = null)
     {
         $strategy = new RouteNotFoundStrategy();
         $config   = $this->getConfig($container);

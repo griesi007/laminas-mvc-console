@@ -8,10 +8,10 @@
 
 namespace Laminas\Mvc\Console\Service;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\Mvc\Console\View\DefaultRenderingStrategy;
 use Laminas\Mvc\Console\View\Renderer;
-use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class DefaultRenderingStrategyFactory implements FactoryInterface
@@ -24,7 +24,7 @@ class DefaultRenderingStrategyFactory implements FactoryInterface
      * @param null|array $options
      * @return DefaultRenderingStrategy
      */
-    public function __invoke(ContainerInterface $container, $name, array $options = null)
+    public function __invoke(ContainerInterface $container, $name, ?array $options = null)
     {
         return new DefaultRenderingStrategy($container->get(Renderer::class));
     }

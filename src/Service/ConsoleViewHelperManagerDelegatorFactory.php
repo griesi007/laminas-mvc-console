@@ -8,10 +8,10 @@
 
 namespace Laminas\Mvc\Console\Service;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\Console\Console;
 use Laminas\Router\RouteMatch;
-use Laminas\ServiceManager\DelegatorFactoryInterface;
+use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use Laminas\View\Helper as ViewHelper;
 use Laminas\View\HelperPluginManager;
@@ -31,7 +31,7 @@ class ConsoleViewHelperManagerDelegatorFactory implements DelegatorFactoryInterf
      * @param null|array $options
      * @return HelperPluginManager
      */
-    public function __invoke(ContainerInterface $container, $name, callable $callback, array $options = null)
+    public function __invoke(ContainerInterface $container, $name, callable $callback, ?array $options = null)
     {
         $plugins = $callback();
 
