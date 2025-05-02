@@ -30,7 +30,7 @@ class ConsoleApplicationDelegatorFactory implements DelegatorFactoryInterface
      * @param null|array $options
      * @return \Laminas\Mvc\ApplicationInterface
      */
-    public function __invoke(ContainerInterface $container, $name, callable $callback, array $options = null)
+    public function __invoke(ContainerInterface $container, $name, callable $callback, ?array $options = null)
     {
         $application = $callback();
 

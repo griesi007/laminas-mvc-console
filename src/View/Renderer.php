@@ -29,7 +29,7 @@ class Renderer implements RendererInterface, TreeRendererInterface
      *
      * @param array $config Configuration key-value pairs.
      */
-    public function __construct(FilterChain $filterChain = null)
+    public function __construct(?FilterChain $filterChain = null)
     {
         if ($filterChain) {
             $this->setFilterChain($filterChain);

@@ -46,7 +46,7 @@ abstract class AbstractConsoleController extends AbstractActionController
     /**
      * {@inheritdoc}
      */
-    public function dispatch(RequestInterface $request, ResponseInterface $response = null)
+    public function dispatch(RequestInterface $request, ?ResponseInterface $response = null)
     {
         if (! $request instanceof ConsoleRequest) {
             throw new InvalidArgumentException(sprintf(
