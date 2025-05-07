@@ -27,7 +27,7 @@ class ControllerManagerDelegatorFactory implements DelegatorFactoryInterface
     public function __invoke(ContainerInterface $container, $name, callable $callback, ?array $options = null)
     {
         $controllers = $callback();
-        $controllers->addInitializer([$this, 'injectConsole']);
+        $controllers->addInitializer($this->injectConsole(...));
         return $controllers;
     }
 

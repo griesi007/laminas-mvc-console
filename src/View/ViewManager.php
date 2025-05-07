@@ -51,7 +51,7 @@ class ViewManager implements ListenerAggregateInterface
      */
     public function attach(EventManagerInterface $events, $priority = 1)
     {
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_BOOTSTRAP, [$this, 'onBootstrap'], 10000);
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_BOOTSTRAP, $this->onBootstrap(...), 10000);
     }
 
     /**
@@ -90,10 +90,10 @@ class ViewManager implements ListenerAggregateInterface
         $events->attach(MvcEvent::EVENT_RENDER_ERROR,   [$injectViewModelListener, 'injectViewModel'], -100);
         $mvcRenderingStrategy->attach($events);
 
-        $sharedEvents->attach(DispatchableInterface::class, MvcEvent::EVENT_DISPATCH, [$injectParamsListener,    'injectNamedParams'],        1000);
-        $sharedEvents->attach(DispatchableInterface::class, MvcEvent::EVENT_DISPATCH, [$createViewModelListener, 'createViewModelFromArray'],  -80);
-        $sharedEvents->attach(DispatchableInterface::class, MvcEvent::EVENT_DISPATCH, [$createViewModelListener, 'createViewModelFromString'], -80);
-        $sharedEvents->attach(DispatchableInterface::class, MvcEvent::EVENT_DISPATCH, [$createViewModelListener, 'createViewModelFromNull'],   -80);
+        $sharedEvents->attach(DispatchableInterface::class, MvcEvent::EVENT_DISPATCH, $injectParamsListener->injectNamedParams(...),        1000);
+        $sharedEvents->attach(DispatchableInterface::class, MvcEvent::EVENT_DISPATCH, $createViewModelListener->createViewModelFromArray(...),  -80);
+        $sharedEvents->attach(DispatchableInterface::class, MvcEvent::EVENT_DISPATCH, $createViewModelListener->createViewModelFromString(...), -80);
+        $sharedEvents->attach(DispatchableInterface::class, MvcEvent::EVENT_DISPATCH, $createViewModelListener->createViewModelFromNull(...),   -80);
         $sharedEvents->attach(DispatchableInterface::class, MvcEvent::EVENT_DISPATCH, [$injectViewModelListener, 'injectViewModel'],          -100);
         // @codingStandardsIgnoreEnd
     }

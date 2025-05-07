@@ -47,7 +47,7 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
      */
     public function attach(EventManagerInterface $events, $priority = 1)
     {
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH_ERROR, [$this, 'handleRouteNotFoundError']);
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH_ERROR, $this->handleRouteNotFoundError(...));
     }
 
     /**
@@ -135,7 +135,7 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
             if (! $console instanceof ConsoleAdapter) {
                 throw new ServiceNotFoundException();
             }
-        } catch (ServiceNotFoundException $exception) {
+        } catch (ServiceNotFoundException) {
             // The application does not have console adapter
             throw new RuntimeException('Cannot access Console adapter - is it defined in ServiceManager?');
         }

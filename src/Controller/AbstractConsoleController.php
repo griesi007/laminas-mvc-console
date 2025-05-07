@@ -51,7 +51,7 @@ abstract class AbstractConsoleController extends AbstractActionController
         if (! $request instanceof ConsoleRequest) {
             throw new InvalidArgumentException(sprintf(
                 '%s can only dispatch requests in a console environment',
-                get_called_class()
+                static::class
             ));
         }
         return parent::dispatch($request, $response);

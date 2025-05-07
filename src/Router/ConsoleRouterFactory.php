@@ -29,7 +29,7 @@ class ConsoleRouterFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $name, ?array $options = null)
     {
         $config = $container->has('config') ? $container->get('config') : [];
-        $config = isset($config['console']['router']) ? $config['console']['router'] : [];
+        $config = $config['console']['router'] ?? [];
         return $this->createRouter(SimpleRouteStack::class, $config, $container);
     }
 

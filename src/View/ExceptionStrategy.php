@@ -61,8 +61,8 @@ EOT;
      */
     public function attach(EventManagerInterface $events, $priority = 1)
     {
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH_ERROR, [$this, 'prepareExceptionViewModel']);
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER_ERROR, [$this, 'prepareExceptionViewModel']);
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH_ERROR, $this->prepareExceptionViewModel(...));
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_RENDER_ERROR, $this->prepareExceptionViewModel(...));
     }
 
     /**
@@ -200,7 +200,7 @@ EOT;
                                 ':stack',
                             ],
                             [
-                                get_class($previousException),
+                                $previousException::class,
                                 $previousException->getMessage(),
                                 $previousException->getCode(),
                                 $previousException->getFile(),
@@ -223,7 +223,7 @@ EOT;
                             ':previous',
                         ],
                         [
-                            get_class($exception),
+                            $exception::class,
                             $exception->getMessage(),
                             $exception->getCode(),
                             $exception->getFile(),
