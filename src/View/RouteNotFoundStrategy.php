@@ -223,7 +223,7 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
     protected function getConsoleUsage(
         ConsoleAdapter $console,
         $scriptName,
-        ?ModuleManagerInterface $moduleManager = null
+        ?ModuleManagerInterface $moduleManager = null,
     ) {
         /*
          * Loop through all loaded modules and collect usage info
@@ -246,7 +246,7 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
                     "%s\n%s\n%s\n",
                     str_repeat('-', $console->getWidth()),
                     $name,
-                    str_repeat('-', $console->getWidth())
+                    str_repeat('-', $console->getWidth()),
                 );
 
                 $moduleName = $console->colorize($moduleName, ColorInterface::RED);
@@ -282,7 +282,7 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
             if (! is_string($usage) && ! is_array($usage)) {
                 throw new RuntimeException(sprintf(
                     'Cannot understand usage info for module "%s"',
-                    $moduleName
+                    $moduleName,
                 ));
             }
 
@@ -303,7 +303,7 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
                         $result .= $this->renderTable($table, $tableCols, $console->getWidth());
                         $table   = false;
 
-                            // add extra newline for clarity
+                        // add extra newline for clarity
                         $result .= "\n";
                     }
 
@@ -312,7 +312,11 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
 
                     $tableCols = 2;
                     $tableType = 1;
-                    $table[]   = [$a, $b];
+                    if (!is_array($table)) {
+                        $table = [];
+                    }
+
+                    $table[] = [$a, $b];
                     continue;
                 }
 
@@ -415,23 +419,7 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
             return $result;
         }
 
-        /*
-         * Use Laminas\Text\Table to render the table.
-         * The last column will use the remaining space in console window
-         * (minus 1 character to prevent double wrapping at the edge of the
-         * screen).
-         */
-        $maxW[$cols] = $consoleWidth - $width - 1;
-        $table       = new Table\Table();
-        $table->setColumnWidths($maxW);
-        $table->setDecorator(new Table\Decorator\Blank());
-        $table->setPadding(2);
-
-        foreach ($data as $row) {
-            $table->appendRow($row);
-        }
-
-        return $table->render();
+        return print_r($data, true);
     }
 
     /**
@@ -464,7 +452,7 @@ class RouteNotFoundStrategy extends AbstractListenerAggregate
             $report .= sprintf(
                 "Exception: %s\nTrace:\n%s\n",
                 $exception->getMessage(),
-                $exception->getTraceAsString()
+                $exception->getTraceAsString(),
             );
             $exception = $exception->getPrevious();
         }
